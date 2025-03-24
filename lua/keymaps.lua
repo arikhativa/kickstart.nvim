@@ -12,15 +12,54 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
 --
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- NOTE: custom
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- cpy to clipboard
+vim.api.nvim_set_keymap('v', '<leader>y', ":'<,'>w !clip.exe<CR><CR>", { noremap = true, silent = true })
+
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down and keep curser at center' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at center' })
+
+local term_buf = -1
+local term_win = -1
+local last_win = -1
+
+function ToggleTerminal()
+  local current_win = vim.api.nvim_get_current_win()
+
+  if term_win ~= -1 and vim.api.nvim_win_is_valid(term_win) then
+    -- If terminal window is open, close it and return to the last window
+    vim.api.nvim_win_hide(term_win)
+    term_win = -1
+    vim.api.nvim_set_current_win(last_win)
+  else
+    -- Save the last window before opening the terminal
+    last_win = current_win
+
+    if term_buf == -1 or not vim.api.nvim_buf_is_valid(term_buf) then
+      -- Create a new terminal buffer if none exists
+      vim.cmd 'split'
+      vim.cmd 'term'
+      term_buf = vim.api.nvim_get_current_buf()
+    else
+      -- Open terminal in the same position
+      vim.cmd 'split'
+      vim.api.nvim_set_current_buf(term_buf)
+    end
+
+    -- Store the new terminal window ID
+    term_win = vim.api.nvim_get_current_win()
+  end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>st', ':lua ToggleTerminal()<CR>', { noremap = true, silent = true })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
