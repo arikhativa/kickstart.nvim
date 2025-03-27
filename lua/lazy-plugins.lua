@@ -25,6 +25,8 @@ require('lazy').setup({
 
   require 'custom/plugins/harpoon2',
 
+  require 'custom/plugins/nvim-tree',
+
   require 'kickstart/plugins/gitsigns',
 
   require 'kickstart/plugins/which-key',
