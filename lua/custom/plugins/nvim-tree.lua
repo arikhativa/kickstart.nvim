@@ -12,5 +12,10 @@ return {
     vim.keymap.set('n', '<leader>jc', ':NvimTreeClose<CR>', { noremap = true, silent = true })
     vim.keymap.set('n', '<leader>jr', ':NvimTreeRefresh<CR>', { noremap = true, silent = true })
     vim.keymap.set('n', '<leader>js', ':NvimTreeCollapse<CR>', { noremap = true, silent = true })
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        vim.cmd 'NvimTreeClose'
+      end,
+    })
   end,
 }
