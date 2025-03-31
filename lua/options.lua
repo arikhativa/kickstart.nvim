@@ -3,8 +3,9 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- NOTE: yoav set terminal to modifyable
-vim.cmd 'autocmd TermOpen * setlocal modifiable'
+-- NOTE: custom reload files on external change
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, { command = 'checktime' })
 
 -- Make line numbers default
 vim.opt.number = true

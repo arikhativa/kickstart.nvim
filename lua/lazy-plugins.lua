@@ -23,6 +23,8 @@ require('lazy').setup({
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
 
+  require 'custom/plugins/trouble',
+
   require 'custom/plugins/harpoon2',
 
   require 'custom/plugins/nvim-tree',
