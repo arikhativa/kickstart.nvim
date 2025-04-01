@@ -19,6 +19,10 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 -- vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true, silent = true })
 -- del no cpy
 vim.api.nvim_set_keymap('v', 'q', '"_d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'q', '"_d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-q>', '"_dd', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-a>', ':copy .<CR>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-a>', '<Esc>:copy .<CR>i', { noremap = true })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down and keep curser at center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at center' })
