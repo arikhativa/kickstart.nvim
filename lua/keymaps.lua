@@ -16,8 +16,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- cpy to clipboard
-vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true, silent = true })
---vim.api.nvim_set_keymap('v', '<leader>y', ":'<,'>w !clip.exe<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true, silent = true })
+-- del no cpy
+vim.api.nvim_set_keymap('v', 'q', '"_d', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down and keep curser at center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at center' })

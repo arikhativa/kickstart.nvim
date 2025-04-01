@@ -73,15 +73,18 @@ vim.opt.confirm = true
 -- vim: ts=2 sts=2 sw=2 et
 
 -- NOTE: custom wsl clipboard
-vim.g.clipboard = {
-  name = 'WslClipboard',
-  copy = {
-    ['+'] = 'clip.exe',
-    ['*'] = 'clip.exe',
-  },
-  paste = {
-    ['+'] = 'wl-paste --no-newline',
-    ['*'] = 'wl-paste --no-newline',
-  },
-  cache_enabled = 0,
-}
+-- somehow this works now evenwhen all i commented out. myabe i just neede to install wl-clipboar
+--vim.g.clipboard = nil
+--vim.opt.clipboard = ''
+--vim.g.clipboard = {
+--  name = 'WslClipboard',
+--  copy = {
+--    ['+'] = 'clip.exe',
+--    --    ['*'] = 'clip.exe',
+--  },
+--  paste = {
+--    ['+'] = 'wl-paste --no-newline',
+--    --['*'] = 'wl-paste --no-newline',
+--  },
+--  cache_enabled = 0,
+--}
