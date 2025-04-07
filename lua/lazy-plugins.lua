@@ -23,21 +23,18 @@ require('lazy').setup({
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
 
+  require 'custom/plugins/git',
   require 'custom/plugins/icons',
 
   require 'custom/plugins/search-and-replace',
 
   require 'custom/plugins/comment',
 
-  require 'custom/plugins/lazygit',
-
   require 'custom/plugins/trouble',
 
   require 'custom/plugins/harpoon2',
 
   require 'custom/plugins/nvim-tree',
-
-  require 'kickstart/plugins/gitsigns',
 
   require 'kickstart/plugins/which-key',
 
