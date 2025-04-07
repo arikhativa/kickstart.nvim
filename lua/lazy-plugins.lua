@@ -25,6 +25,8 @@ require('lazy').setup({
 
   require 'custom/plugins/icons',
 
+  require 'custom/plugins/search-and-replace',
+
   require 'custom/plugins/comment',
 
   require 'custom/plugins/lazygit',
