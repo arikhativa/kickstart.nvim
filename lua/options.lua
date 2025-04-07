@@ -7,6 +7,8 @@
 vim.opt.autoread = true
 vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, { command = 'checktime' })
 
+vim.opt.autowriteall = true
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.

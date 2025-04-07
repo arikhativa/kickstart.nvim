@@ -23,6 +23,7 @@ vim.api.nvim_set_keymap('n', 'q', '"_d', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-q>', '"_dd', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-a>', ':copy .<CR>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-a>', '<Esc>:copy .<CR>i', { noremap = true })
+--vim.api.nvim_set_keymap('n', '<C-o>', 'o<CR><Esc>', { noremap = true })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down and keep curser at center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at center' })
