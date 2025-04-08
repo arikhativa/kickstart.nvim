@@ -31,17 +31,21 @@ return {
       harpoon:list():add()
     end)
 
-    vim.keymap.set('n', '<leader>hg', function()
-      harpoon:list():clear()
-      local changed_files = vim.fn.systemlist "git status --porcelain | awk '{print $2}'"
-      for _, file in ipairs(changed_files) do
-        vim.notify(file, vim.log.levels.INFO)
-        harpoon:list():add { value = file }
-      end
-    end)
+    -- vim.keymap.set('n', '<leader>hg', function()
+    --   harpoon:list():clear()
+    --   local changed_files = vim.fn.systemlist "git status --porcelain | awk '{print $2}'"
+    --   for _, file in ipairs(changed_files) do
+    --     vim.notify(file, vim.log.levels.INFO)
+    --     harpoon:list():add { value = file }
+    --   end
+    -- end)
 
     vim.keymap.set('n', '<leader>hr', function()
       harpoon:list():remove()
+    end)
+
+    vim.keymap.set('n', '<c-b>', function()
+      harpoon:list():prev()
     end)
 
     vim.keymap.set('n', '<c-n>', function()
