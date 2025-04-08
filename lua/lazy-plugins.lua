@@ -23,6 +23,7 @@ require('lazy').setup({
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
 
+  require 'custom/plugins/prettier',
   require 'custom/plugins/plenary',
   require 'custom/plugins/git',
   require 'custom/plugins/diff',
