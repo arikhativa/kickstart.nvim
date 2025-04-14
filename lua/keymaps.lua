@@ -96,4 +96,35 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- NOTE: custom file path
+vim.api.nvim_create_user_command('ShowFullPath', function()
+  print(vim.fn.expand '%:p')
+end, {})
+
+vim.api.nvim_create_user_command('ShowRelativePath', function()
+  print(vim.fn.expand '%')
+end, {})
+
+vim.api.nvim_create_user_command('CopyFileName', function()
+  local filename = vim.fn.expand '%:t'
+  vim.fn.setreg('+', filename) -- copies to system clipboard
+  print('Copied file name: ' .. filename)
+end, {})
+
+vim.keymap.set('n', '<leader>pf', ':ShowFullPath<CR>', { desc = 'Show full path', silent = true })
+vim.keymap.set('n', '<leader>pr', ':ShowRelativePath<CR>', { desc = 'Show relative path', silent = true })
+vim.keymap.set('n', '<leader>yf', ':CopyFileName<CR>', { desc = 'Copy file name', silent = true })
+
+-- NOTE: load curent file
+vim.api.nvim_create_user_command('RunBufferAsLua', function()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local code = table.concat(lines, '\n')
+  local ok, err = pcall(load(code))
+  if not ok then
+    print('Lua Error: ' .. err)
+  end
+end, {})
+
+vim.keymap.set('n', '<leader>ll', ':RunBufferAsLua<CR>', { desc = 'Run whole buffer as Lua', silent = true })
+
 -- vim: ts=2 sts=2 sw=2 et
