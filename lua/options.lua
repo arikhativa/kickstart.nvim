@@ -72,6 +72,9 @@ vim.opt.scrolloff = 10
 -- See `:help 'confirm'`
 vim.opt.confirm = true
 
+-- NOTE: for nvim-notify
+vim.opt.termguicolors = true
+
 -- vim: ts=2 sts=2 sw=2 et
 
 -- NOTE: custom wsl clipboard

@@ -29,6 +29,7 @@ require('lazy').setup({
   require 'custom/plugins/diff',
   require 'custom/plugins/status-line',
   require 'custom/plugins/search-and-replace',
+  require 'custom/plugins/notify',
 
   require 'custom/plugins/comment',
 
