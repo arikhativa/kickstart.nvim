@@ -28,7 +28,6 @@ require('lazy').setup({
   require 'custom/plugins/git',
   require 'custom/plugins/diff',
   require 'custom/plugins/status-line',
-
   require 'custom/plugins/search-and-replace',
 
   require 'custom/plugins/comment',
@@ -40,6 +39,7 @@ require('lazy').setup({
   require 'custom/plugins/nvim-tree',
 
   require 'kickstart/plugins/which-key',
+  require 'kickstart.plugins.lint',
 
   require 'kickstart/plugins/telescope',
 
@@ -68,7 +68,6 @@ require('lazy').setup({
   --
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
 
