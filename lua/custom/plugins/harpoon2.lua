@@ -1,7 +1,8 @@
 return {
   'theprimeagen/harpoon',
   branch = 'harpoon2',
-  dependencies = { 'nvim-lua/plenary.nvim'
+  dependencies = {
+    'nvim-lua/plenary.nvim',
     --'nvim-telescope/telescope.nvim'
   },
   config = function()
@@ -50,8 +51,7 @@ return {
       harpoon:list():remove()
     end)
 
-
-    vim.keymap.set('n', '<C-b>', function()
+    vim.keymap.set('n', '<leader>hp', function()
       local list = harpoon:list()
       local current = list._index
       local len = list._length
@@ -64,7 +64,7 @@ return {
       end
     end)
 
-    vim.keymap.set('n', '<C-n>', function()
+    vim.keymap.set('n', '<leader>hn', function()
       local list = harpoon:list()
       local current = list._index
       local len = list._length
@@ -77,6 +77,9 @@ return {
       end
     end)
 
+    vim.keymap.set('n', '<leader>hc', function()
+      harpoon:list():clear()
+    end)
 
     vim.keymap.set('n', '<C-e>', function()
       harpoon.ui:toggle_quick_menu(harpoon:list())

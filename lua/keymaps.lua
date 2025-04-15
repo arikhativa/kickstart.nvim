@@ -14,16 +14,13 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: custom
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- cpy to clipboard
--- vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true, silent = true })
--- del no cpy
 vim.api.nvim_set_keymap('v', 'q', '"_d', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'q', '"_d', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-q>', '"_dd', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-q>', '<Esc>"_dd<CR>ki', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-a>', ':copy .<CR>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-a>', '<Esc>:copy .<CR>i', { noremap = true })
---vim.api.nvim_set_keymap('n', '<C-o>', 'o<CR><Esc>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-b>', ':bd<CR>', { noremap = true })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down and keep curser at center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at center' })
@@ -76,6 +73,8 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-n>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'Next error', silent = true })
+vim.keymap.set('n', '<C-p>', ':lua vim.diagnostic.goto_prev()<CR>', { desc = 'Prev error', silent = true })
 
 -- tabs
 vim.keymap.set('n', '<leader>tn', ':tabnext<CR>', { desc = 'Next Tab', silent = true })
@@ -113,7 +112,7 @@ end, {})
 
 vim.keymap.set('n', '<leader>pf', ':ShowFullPath<CR>', { desc = 'Show full path', silent = true })
 vim.keymap.set('n', '<leader>pr', ':ShowRelativePath<CR>', { desc = 'Show relative path', silent = true })
-vim.keymap.set('n', '<leader>yf', ':CopyFileName<CR>', { desc = 'Copy file name', silent = true })
+vim.keymap.set('n', '<leader>yfn', ':CopyFileName<CR>', { desc = 'Copy file name', silent = true })
 
 -- NOTE: load curent file
 vim.api.nvim_create_user_command('RunBufferAsLua', function()
@@ -126,5 +125,39 @@ vim.api.nvim_create_user_command('RunBufferAsLua', function()
 end, {})
 
 vim.keymap.set('n', '<leader>ll', ':RunBufferAsLua<CR>', { desc = 'Run whole buffer as Lua', silent = true })
+
+vim.api.nvim_create_user_command('CopyFileContent', function()
+  local content = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local text = table.concat(content, '\n')
+  vim.fn.setreg('+', text) -- copy to system clipboard
+  print 'Copied entire file to clipboard.'
+end, {})
+
+vim.keymap.set('n', '<leader>yfc', ':CopyFileContent<CR>', { desc = 'Copy entire file', silent = true })
+
+-- NOTE: custom cmd s
+vim.api.nvim_create_user_command('InsertRNComponent', function()
+  local filename = vim.fn.expand '%:t:r' -- current file name without extension
+
+  local component = string.format(
+    [[
+import { PropsWithChildren } from "react"
+import { View } from "react-native"
+
+type Props = PropsWithChildren & {
+}
+
+export function %s({}: Props) {
+  return <View></View>
+}
+]],
+    filename
+  )
+
+  vim.api.nvim_buf_set_lines(0, 0, 0, false, vim.split(component, '\n'))
+  print('Inserted component template for: ' .. filename)
+end, {
+  desc = 'Insert a React Native component template using current filename',
+})
 
 -- vim: ts=2 sts=2 sw=2 et
