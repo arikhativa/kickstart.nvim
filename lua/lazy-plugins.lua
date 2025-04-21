@@ -35,8 +35,6 @@ require('lazy').setup({
 
   require 'custom/plugins/trouble',
 
-  require 'custom/plugins/harpoon2',
-
   require 'custom/plugins/nvim-tree',
 
   require 'kickstart/plugins/which-key',
