@@ -77,9 +77,9 @@ vim.keymap.set('n', '<C-n>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'Ne
 vim.keymap.set('n', '<C-p>', ':lua vim.diagnostic.goto_prev()<CR>', { desc = 'Prev error', silent = true })
 
 -- tabs
-vim.keymap.set('n', '<leader>tn', ':tabnext<CR>', { desc = 'Next Tab', silent = true })
-vim.keymap.set('n', '<leader>tp', ':tabprev<CR>', { desc = 'Previous Tab', silent = true })
-vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = 'Close Tab', silent = true })
+vim.keymap.set('n', '<M-l>', ':tabnext<CR>', { desc = 'Next Tab', silent = true })
+vim.keymap.set('n', '<M-h>', ':tabprev<CR>', { desc = 'Previous Tab', silent = true })
+vim.keymap.set('n', '<M-w>', ':tabclose<CR>', { desc = 'Close Tab', silent = true })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

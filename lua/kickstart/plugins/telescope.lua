@@ -58,9 +58,26 @@ return {
         --
         defaults = {
           file_ignore_patterns = { 'android/.*', 'node_modules/.*', '%.git/.*', '%.angular/.*', '%.vscode/.*' },
-          --   mappings = {
-          --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-          --   },
+          mappings = {
+            i = {
+              ['<C-t>'] = function(prompt_bufnr)
+                local actions = require 'telescope.actions'
+                local action_state = require 'telescope.actions.state'
+                local entry = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+                vim.cmd('tabnew ' .. entry.path)
+              end,
+            },
+            n = {
+              ['<C-t>'] = function(prompt_bufnr)
+                local actions = require 'telescope.actions'
+                local action_state = require 'telescope.actions.state'
+                local entry = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+                vim.cmd('tabnew ' .. entry.path)
+              end,
+            },
+          },
         },
         pickers = {
           find_files = {
