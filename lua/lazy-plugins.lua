@@ -24,6 +24,7 @@ require('lazy').setup({
   -- include a plugin definition from file lua/path/name.lua
 
   require 'custom/plugins/prettier',
+  require 'custom/plugins/timber',
   require 'custom/plugins/plenary',
   require 'custom/plugins/git',
   require 'custom/plugins/diff',
