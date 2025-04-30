@@ -72,11 +72,12 @@ vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<leader>nw', ':vnew<CR>', { desc = 'New window right' })
 vim.keymap.set('n', '<C-n>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'Next error', silent = true })
 vim.keymap.set('n', '<C-p>', ':lua vim.diagnostic.goto_prev()<CR>', { desc = 'Prev error', silent = true })
 
 -- tabs
+vim.keymap.set('n', '<M-n>', ':tabnew<CR>', { desc = 'New Tab', silent = true })
 vim.keymap.set('n', '<M-l>', ':tabnext<CR>', { desc = 'Next Tab', silent = true })
 vim.keymap.set('n', '<M-h>', ':tabprev<CR>', { desc = 'Previous Tab', silent = true })
 vim.keymap.set('n', '<M-w>', ':tabclose<CR>', { desc = 'Close Tab', silent = true })

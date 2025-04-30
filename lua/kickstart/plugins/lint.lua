@@ -6,7 +6,6 @@ return {
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
         javascript = { 'eslint' },
         typescript = { 'eslint' },
         javascriptreact = { 'eslint' },
@@ -59,6 +58,12 @@ return {
           end
         end,
       })
+
+      -- NOTE:
+      -- Instead of autocmd, set a manual keymap
+      -- vim.keymap.set('n', '<leader>lf', function()
+      --   lint.try_lint()
+      -- end, { desc = 'Lint current file' })
     end,
   },
 }
