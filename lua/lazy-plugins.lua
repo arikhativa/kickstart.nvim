@@ -24,6 +24,7 @@ require('lazy').setup({
   -- include a plugin definition from file lua/path/name.lua
 
   require 'custom/plugins/dashboard',
+  require 'custom/plugins/bidi',
   require 'custom/plugins/tabs',
   require 'custom/plugins/vimade',
   require 'custom/plugins/prettier',
