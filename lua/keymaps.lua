@@ -80,12 +80,6 @@ vim.keymap.set('n', '<leader>nw', ':vnew<CR>', { desc = 'New window right' })
 vim.keymap.set('n', '<C-n>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'Next error', silent = true })
 vim.keymap.set('n', '<C-p>', ':lua vim.diagnostic.goto_prev()<CR>', { desc = 'Prev error', silent = true })
 
--- tabs
-vim.keymap.set('n', '<M-n>', ':tabnew<CR>', { desc = 'New Tab', silent = true })
-vim.keymap.set('n', '<M-l>', ':tabnext<CR>', { desc = 'Next Tab', silent = true })
-vim.keymap.set('n', '<M-h>', ':tabprev<CR>', { desc = 'Previous Tab', silent = true })
-vim.keymap.set('n', '<M-w>', ':tabclose<CR>', { desc = 'Close Tab', silent = true })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -164,5 +158,24 @@ export function %s({}: Props) {
 end, {
   desc = 'Insert a React Native component template using current filename',
 })
+
+-- NOTE: keymap for tabs
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Move to previous/next
+map('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<A-l>', '<Cmd>BufferNext<CR>', opts)
+
+-- Re-order to previous/next
+map('n', '<A-,>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A-.>', '<Cmd>BufferMoveNext<CR>', opts)
+
+-- Close buffer
+map('n', '<A-w>', '<Cmd>BufferClose<CR>', opts)
+map('n', '<leader>tc', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
+
+-- Magic buffer-picking mode
+map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
 
 -- vim: ts=2 sts=2 sw=2 et
