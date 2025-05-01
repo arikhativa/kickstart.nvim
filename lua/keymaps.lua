@@ -8,6 +8,9 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- nvim tabs
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = 'Close curent tab' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -173,7 +176,7 @@ map('n', '<A-.>', '<Cmd>BufferMoveNext<CR>', opts)
 
 -- Close buffer
 map('n', '<A-w>', '<Cmd>BufferClose<CR>', opts)
-map('n', '<leader>tc', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
+map('n', '<A-q>', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
 
 -- Magic buffer-picking mode
 map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
