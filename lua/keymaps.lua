@@ -25,6 +25,10 @@ vim.api.nvim_set_keymap('n', '<C-b>', ':bd<CR>', { noremap = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down and keep curser at center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at center' })
 
+-- NOTE: move cmd
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
 local term_buf = -1
 local term_win = -1
 local last_win = -1
