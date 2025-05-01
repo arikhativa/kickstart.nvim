@@ -4,4 +4,5 @@ return {
   config = function()
     require('bidi').setup()
   end,
+  -- :BidiEnable
 }
