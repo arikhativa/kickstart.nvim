@@ -23,7 +23,7 @@ vim.api.nvim_set_keymap('n', '<C-q>', '"_dd', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-q>', '<Esc>"_dd<CR>ki', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-a>', ':copy .<CR>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-a>', '<Esc>:copy .<CR>i', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-b>', ':bd<CR>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<C-b>', ':bd<CR>', { noremap = true })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down and keep curser at center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at center' })
@@ -82,7 +82,7 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<leader>nw', ':vnew<CR>', { desc = 'New window right' })
-vim.keymap.set('n', '<C-n>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'Next error', silent = true })
+-- vim.keymap.set('n', '<C-n>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'Next error', silent = true })
 vim.keymap.set('n', '<C-p>', ':lua vim.diagnostic.goto_prev()<CR>', { desc = 'Prev error', silent = true })
 
 -- [[ Basic Autocommands ]]
