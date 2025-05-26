@@ -46,24 +46,26 @@ return {
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
-      local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
-      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
-        group = lint_augroup,
-        callback = function()
-          -- Only run the linter in buffers that you can modify in order to
-          -- avoid superfluous noise, notably within the handy LSP pop-ups that
-          -- describe the hovered symbol using Markdown.
-          if vim.opt_local.modifiable:get() then
-            lint.try_lint()
-          end
-        end,
-      })
+      -- local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
+      -- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+      --   group = lint_augroup,
+      --   callback = function()
+      --     -- Only run the linter in buffers that you can modify in order to
+      --     -- avoid superfluous noise, notably within the handy LSP pop-ups that
+      --     -- describe the hovered symbol using Markdown.
+      --     if vim.opt_local.modifiable:get() then
+      --       lint.try_lint()
+      --     end
+      --   end,
+      -- })
 
       -- NOTE:
       -- Instead of autocmd, set a manual keymap
-      -- vim.keymap.set('n', '<leader>lf', function()
-      --   lint.try_lint()
-      -- end, { desc = 'Lint current file' })
+      vim.keymap.set('n', '<leader>lf', function()
+        if vim.opt_local.modifiable:get() then
+          lint.try_lint()
+        end
+      end, { desc = 'Lint current file' })
     end,
   },
 }

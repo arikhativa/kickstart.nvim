@@ -31,6 +31,8 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at cen
 -- NOTE: move cmd
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==')
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==')
 
 local term_buf = -1
 local term_win = -1
@@ -179,6 +181,6 @@ map('n', '<A-w>', '<Cmd>BufferClose<CR>', opts)
 map('n', '<A-q>', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
 
 -- Magic buffer-picking mode
-map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+map('n', '<A-p>', '<Cmd>BufferPick<CR>', opts)
 
 -- vim: ts=2 sts=2 sw=2 et

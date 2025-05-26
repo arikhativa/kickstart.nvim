@@ -58,6 +58,7 @@ return {
         --
         defaults = {
           file_ignore_patterns = { 'android/.*', 'node_modules/.*', '%.git/.*', '%.angular/.*', '%.vscode/.*' },
+
           mappings = {
             i = {
               ['<C-t>'] = function(prompt_bufnr)
