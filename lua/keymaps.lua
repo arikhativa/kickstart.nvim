@@ -24,6 +24,8 @@ vim.api.nvim_set_keymap('i', '<C-q>', '<Esc>"_dd<CR>ki', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-a>', ':copy .<CR>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-a>', '<Esc>:copy .<CR>i', { noremap = true })
 -- vim.api.nvim_set_keymap('n', '<C-b>', ':bd<CR>', { noremap = true })
+vim.keymap.set('i', '<C-Right>', '<Esc>ea')
+vim.keymap.set('i', '<C-Left>', '<Esc>bi')
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down and keep curser at center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at center' })
