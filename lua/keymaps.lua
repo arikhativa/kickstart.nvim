@@ -84,7 +84,7 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<leader>nw', ':vnew<CR>', { desc = 'New window right' })
--- vim.keymap.set('n', '<C-n>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'Next error', silent = true })
+vim.keymap.set('n', '<C-n>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'Next error', silent = true })
 vim.keymap.set('n', '<C-p>', ':lua vim.diagnostic.goto_prev()<CR>', { desc = 'Prev error', silent = true })
 
 -- [[ Basic Autocommands ]]
