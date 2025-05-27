@@ -27,6 +27,9 @@ vim.api.nvim_set_keymap('i', '<C-a>', '<Esc>:copy .<CR>i', { noremap = true })
 vim.keymap.set('i', '<C-Right>', '<Esc>ea')
 vim.keymap.set('i', '<C-Left>', '<Esc>bi')
 
+-- In visual mode, use `p` to paste without overwriting the clipboard
+vim.keymap.set('v', 'p', [["_dP]], { noremap = true, silent = true })
+
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down and keep curser at center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move up and keep curser at center' })
 
