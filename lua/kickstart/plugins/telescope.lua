@@ -31,6 +31,30 @@ return {
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
+      local actions = require 'telescope.actions'
+      local state = require 'telescope.state'
+
+      actions.scroll_previewer_horizontal = function(prompt_bufnr, direction)
+        local status = state.get_status(prompt_bufnr)
+
+        if not status.preview_win then
+          return
+        end
+
+        local default_speed = 10
+        local speed = status.picker.layout_config.scroll_speed or default_speed
+        local scroll_cmd
+
+        if direction > 0 then
+          scroll_cmd = string.format('normal! %dzl', math.floor(speed))
+        else
+          scroll_cmd = string.format('normal! %dzh', math.floor(math.abs(speed)))
+        end
+
+        vim.api.nvim_win_call(status.preview_win, function()
+          vim.cmd(scroll_cmd)
+        end)
+      end
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
       -- many different aspects of Neovim, your workspace, LSP, and more!
@@ -48,7 +72,7 @@ return {
       --
       -- This opens a window that shows you all of the keymaps for the current
       -- Telescope picker. This is really useful to discover what Telescope can
-      -- do as well as how to actually do it!
+      -- do as well as how to actually do it!tele
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
@@ -61,23 +85,14 @@ return {
 
           mappings = {
             i = {
-              ['<C-t>'] = function(prompt_bufnr)
-                local actions = require 'telescope.actions'
-                local action_state = require 'telescope.actions.state'
-                local entry = action_state.get_selected_entry()
-                actions.close(prompt_bufnr)
-                vim.cmd('tabnew ' .. entry.path)
+              ['<C-l>'] = function(bufnr)
+                actions.scroll_previewer_horizontal(bufnr, 1)
+              end,
+              ['<C-h>'] = function(bufnr)
+                actions.scroll_previewer_horizontal(bufnr, -1)
               end,
             },
-            n = {
-              ['<C-t>'] = function(prompt_bufnr)
-                local actions = require 'telescope.actions'
-                local action_state = require 'telescope.actions.state'
-                local entry = action_state.get_selected_entry()
-                actions.close(prompt_bufnr)
-                vim.cmd('tabnew ' .. entry.path)
-              end,
-            },
+            n = {},
           },
         },
         pickers = {
