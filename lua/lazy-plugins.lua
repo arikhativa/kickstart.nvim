@@ -40,7 +40,7 @@ require('lazy').setup({
 
   require 'custom/plugins/comment',
 
-  require 'custom/plugins/trouble',
+  -- require 'custom/plugins/trouble',
 
   require 'custom/plugins/nvim-tree',
 
