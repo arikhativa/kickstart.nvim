@@ -5,7 +5,59 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
+      -- lint.linters.cspell = {
+      --   cmd = { 'cspell' },
+      --   args = {
+      --     'lint',
+      --     '--no-summary',
+      --     '--no-progress',
+      --     '--relative',
+      --     '--dot',
+      --     '--gitignore',
+      --     '--no-must-find-files',
+      --     '--quiet',
+      --     '--json',
+      --     vim.fn.expand '%:p',
+      --   },
+      --
+      --   parser = function(output, bufnr)
+      --     local diagnostics = {}
+      --     local parsed_json = util.parse_json(output) -- Use lint.util.parse_json
+      --
+      --     -- Check if parsing was successful and if there are issues
+      --     if parsed_json and parsed_json.issues then
+      --       for _, issue in ipairs(parsed_json.issues) do
+      --         -- Map cspell's severity to Neovim's diagnostic severity
+      --         local severity = vim.diagnostic.severity.INFO -- Default to INFO
+      --         if issue.severity == 'error' then
+      --           severity = vim.diagnostic.severity.ERROR
+      --         elseif issue.severity == 'warning' then
+      --           severity = vim.diagnostic.severity.WARN
+      --         elseif issue.severity == 'information' then
+      --           severity = vim.diagnostic.severity.INFO
+      --         elseif issue.severity == 'hint' or issue.severity == 'suggestion' then
+      --           severity = vim.diagnostic.severity.HINT
+      --         end
+      --
+      --         table.insert(diagnostics, {
+      --           bufnr = bufnr,
+      --           lnum = issue.row - 1, -- Neovim is 0-indexed for lines
+      --           col = issue.col - 1, -- Neovim is 0-indexed for columns
+      --           end_lnum = issue.row - 1,
+      --           end_col = issue.col - 1 + #issue.text, -- Highlight the whole word
+      --           message = issue.message,
+      --           source = 'cspell',
+      --           code = issue.issueType,
+      --           severity = severity,
+      --         })
+      --       end
+      --     end
+      --     return diagnostics
+      --   end,
+      -- }
+
       lint.linters_by_ft = {
+        ['*'] = { 'cspell' },
         javascript = { 'eslint' },
         typescript = { 'eslint' },
         javascriptreact = { 'eslint' },
