@@ -24,6 +24,7 @@ require('lazy').setup({
   -- include a plugin definition from file lua/path/name.lua
 
   require 'custom/plugins/multicursors',
+  require 'custom/plugins/nvterm',
   require 'custom/plugins/dashboard',
   require 'custom/plugins/bidi',
   require 'custom/plugins/tabs',

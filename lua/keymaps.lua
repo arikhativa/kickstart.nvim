@@ -16,6 +16,8 @@ vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = 'Close curent tab' }
 -- is not what someone will guess without a bit more experience.
 --
 -- NOTE: custom
+vim.keymap.set('n', '<C-s>', '<cmd>w<CR>', { desc = 'general save file' })
+
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.api.nvim_set_keymap('v', 'q', '"_d', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'q', '"_d', { noremap = true, silent = true })
