@@ -6,10 +6,10 @@ return {
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
-        javascript = { 'eslint', 'cspell' },
-        typescript = { 'eslint', 'cspell' },
-        javascriptreact = { 'eslint', 'cspell' },
-        typescriptreact = { 'eslint', 'cspell' },
+        javascript = { 'eslint' },
+        typescript = { 'eslint' },
+        javascriptreact = { 'eslint' },
+        typescriptreact = { 'eslint' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
@@ -44,19 +44,19 @@ return {
       -- lint.linters_by_ft['terraform'] = nil
       -- lint.linters_by_ft['text'] = nil
 
-      -- Create an autocommand group specifically for linting
-      local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
-
-      -- Set up the autocommand to run lint.try_lint() after saving
-      vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-        group = lint_augroup,
-        callback = function()
-          -- Only run the linter in buffers that you can modify
-          if vim.opt_local.modifiable:get() then
-            lint.try_lint()
-          end
-        end,
-      })
+      -- -- Create an autocommand group specifically for linting
+      -- local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
+      --
+      -- -- Set up the autocommand to run lint.try_lint() after saving
+      -- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+      --   group = lint_augroup,
+      --   callback = function()
+      --     -- Only run the linter in buffers that you can modify
+      --     if vim.opt_local.modifiable:get() then
+      --       lint.try_lint()
+      --     end
+      --   end,
+      -- })
 
       -- NOTE:
       -- Instead of autocmd, set a manual keymap
